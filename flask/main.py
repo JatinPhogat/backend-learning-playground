@@ -1,10 +1,18 @@
-from flask import Flask
+from flask import Flask , request
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def home():
+    return "Hello this is the homepage"
 
-if __name__== "__main__":
-    app.run(debug=True)
+@app.route("/contact")
+def contact():
+    return "this is contacts"
+
+@app.route("/submit", methods = ["GET", "POST"])
+def submit():
+    if request.method == "GET":
+        return "get the data here"
+    else:
+        return "submit data"
