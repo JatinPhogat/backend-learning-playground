@@ -3,3 +3,12 @@ myvenv/
 .myvenv/
 env/
 .venv/
+myenv/
+
+# Python cache
+__pycache__/
+./__pycache__
+*.py[cod]
+*$py.class
+*.so
+

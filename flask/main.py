@@ -1,18 +1,22 @@
-from flask import Flask , request
+from flask import Flask , request , Response, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template')
 
 @app.route("/")
+def main():
+    return "Hello this is the userless page"
+
+@app.route("/home")
 def home():
-    return "Hello this is the homepage"
+    return render_template("home.html")
 
-@app.route("/contact")
-def contact():
-    return "this is contacts"
-
-@app.route("/submit", methods = ["GET", "POST"])
+@app.route("/submit", methods = ["POST"])
 def submit():
-    if request.method == "GET":
-        return "get the data here"
+
+    username = request.form.get("username")
+    password = request.form.get("passw")
+
+    if username == "jatin" and password =="123":
+        return render_template("submit.html", name = username)
     else:
-        return "submit data"
+        return "invalid credential"
